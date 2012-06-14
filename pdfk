@@ -1,0 +1,24 @@
+[33mcommit 073a1b5ead7bb032c174ad572b12ef24d292a3f4[m
+Merge: e23f8ca b22df8e
+Author: Isk Sulim <isk_vmk@mail.ru>
+Date:   Wed Jun 13 01:49:34 2012 +0400
+
+    Merge branch 'master' of github.com:rubywazza/todo
+
+[33mcommit e23f8ca9dfe3ec9be5e67cb40bc2cf82c368ea1d[m
+Author: Isk Sulim <isk_vmk@mail.ru>
+Date:   Wed Jun 13 01:46:48 2012 +0400
+
+    devise installed, user tests are written
+
+[33mcommit b22df8e17c23ddc5e765ba90807b436377cb9dbf[m
+Author: rubywazza <isk_vmk@mail.ru>
+Date:   Sat Jun 9 13:25:16 2012 -0700
+
+    Initial commit
+
+[33mcommit 70e4da4953d407a77f71ac50a214b599ba8de3e4[m
+Author: Isk Sulim <isk_vmk@mail.ru>
+Date:   Sun Jun 10 03:11:19 2012 +0400
+
+    Initial
