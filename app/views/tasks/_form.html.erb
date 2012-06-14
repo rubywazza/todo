@@ -24,12 +24,8 @@
     <%= f.date_select :deadline %>
   </div>
   <div class="field">
-    <%= f.label :is_finished %><br />
-    <%= f.check_box :is_finished %>
-  </div>
-  <div class="field">
     <%= f.label :attachment %><br />
-    <%= f.text_field :attachment %>
+    <%= f.file_field :attachment %>
   </div>
   <div class="actions">
     <%= f.submit %>
