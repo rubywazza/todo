@@ -58,6 +58,23 @@ class TasksController < ApplicationController
     end
   end
 
+  def done
+    @task = Task.find(params[:task_id])
+    @task.update_attributes({:is_finished => true})
+    respond_to do |format|
+      format.html { redirect_to tasks_url}
+      format.json { render json: @tasks}
+    end
+  end
+
+  def notdone
+     @task = Task.find(params[:task_id])
+     @task.update_attributes({:is_finished => false})
+     respond_to do |format|
+       format.html { redirect_to tasks_url}
+       format.json { render json: @tasks}
+     end
+   end
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update

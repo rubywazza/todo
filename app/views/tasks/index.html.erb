@@ -9,9 +9,7 @@
     <th>Attachment</th>
     <th>Deadline</th>
     <th>Actions</th>
-    <th></th>
-    <th></th>
-    <th></th>
+
   </tr>
 
 <% @tasks.each do |task| %>
@@ -24,8 +22,15 @@
       <% end %>
     </td>
     <td><%= task.deadline %> <% if task.deadline.today? %> TODAY! <% end %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_task_path(task) %>
+    <%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete %>
+    <%= unless task.is_finished
+          link_to 'Done', done_task_path(task)
+        else
+          link_to 'Not done yet', notdone_task_path(task)
+        end
+    %>
+    </td>
   </tr>
 <% end %>
 </table>
