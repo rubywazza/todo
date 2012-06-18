@@ -2,13 +2,22 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   before_filter :authenticate_user!
-  
+
   def index
     @tasks = current_user.tasks
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tasks }
+      format.json { render json: @tasks } if current_user.account_type == "paid"
+    end
+  end
+
+  def today
+    @tasks = Task.where("user_id = ? and deadline = ?", current_user, Date.today)
+
+    respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @tasks }  if current_user.account_type == "paid"
     end
   end
 
@@ -19,7 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @task }
+      format.json { render json: @task } if current_user.account_type == "paid"
     end
   end
 
@@ -30,7 +39,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @task }
+      format.json { render json: @task } if current_user.account_type == "paid"
     end
   end
 
@@ -50,7 +59,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
+        format.json { render json: @task, status: :created, location: @task } if current_user.account_type == "paid"
       else
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -63,7 +72,7 @@ class TasksController < ApplicationController
     @task.update_attributes({:is_finished => true})
     respond_to do |format|
       format.html { redirect_to tasks_url}
-      format.json { render json: @tasks}
+      format.json { render json: @tasks} if current_user.account_type == "paid"
     end
   end
 
@@ -72,7 +81,7 @@ class TasksController < ApplicationController
      @task.update_attributes({:is_finished => false})
      respond_to do |format|
        format.html { redirect_to tasks_url}
-       format.json { render json: @tasks}
+       format.json { render json: @tasks} if current_user.account_type == "paid"
      end
    end
   # PUT /tasks/1

@@ -1,15 +1,19 @@
-<h1>Listing tasks</h1>
-
-<h2>Stuff to do</h2>
-<%=	 link_to "New task", new_task_path, :class => 'btn btn-primary' %>
-<table>
+<div class="row">
+<div class="span4 offset4"><h2>Stuff to do</h2></div>
+</div>
+<div class="row" style="padding-bottom: 10px;">
+<%=	link_to "New task", new_task_path, :class => 'btn' %>
+<%= link_to "Show tasks for today", today_tasks_path %>
+<%= link_to "Export JSON", "tasks.json"  if current_user.account_type == "paid"  %>
+</div>
+<div class="row">
+<table class="table table-striped">
   <tr>
     <th>Title</th>
     <th>Description</th>
     <th>Attachment</th>
     <th>Deadline</th>
     <th>Actions</th>
-
   </tr>
 
 <% @tasks.each do |task| %>
@@ -21,20 +25,18 @@
           <%= link_to File.basename(task.attachment_url), task.attachment_url %>
       <% end %>
     </td>
-    <td><%= task.deadline %> <% if task.deadline.today? %> TODAY! <% end %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %>
-    <%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete %>
-    <%= unless task.is_finished
-          link_to 'Done', done_task_path(task)
-        else
-          link_to 'Not done yet', notdone_task_path(task)
-        end
-    %>
+    <td><%= task.deadline %> </td>
+    <td>
+      <%= if task.is_finished
+                link_to 'Not done yet', notdone_task_path(task), :class => 'btn btn-warning'
+              else
+                link_to 'Done', done_task_path(task), :class => 'btn btn-success'
+              end
+      %>
+      <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-inverse' %>
+      <%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete , :class => 'btn btn-danger' %>
     </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Task', new_task_path %>
+</div>

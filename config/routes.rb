@@ -61,4 +61,5 @@ Todo::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   match 'tasks/:task_id/done' => "tasks#done", :as => :done_task
   match 'tasks/:task_id/notdone' => "tasks#notdone", :as => :notdone_task
+  match '/today' => "tasks#today", :as => :today_tasks
 end

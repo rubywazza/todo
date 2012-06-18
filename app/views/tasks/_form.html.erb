@@ -10,24 +10,19 @@
       </ul>
     </div>
   <% end %>
+  <div class="control-group">
+    <%= f.label :title, :class => "control-label" %>
+    <%= f.text_field :title, :class => "span3" %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :deadline %><br />
-    <%= f.date_select :deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :attachment %><br />
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => 8, :cols =>105 %>
+
+    <%= f.label :deadline %>
+    <%= f.datepicker 'deadline', :dateFormat => "yy-mm-dd" %>
+
+    <%= f.label :attachment %>
     <%= f.file_field :attachment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <br/>
+    <%= f.submit :class => 'btn' %>
   </div>
 <% end %>
