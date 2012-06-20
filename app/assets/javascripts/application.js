@@ -15,3 +15,15 @@
 //= require bootstrap
 //= require jquery-ui
 //= require_tree .
+
+    $('.btn btn-info').bind('ajax:success', function(){
+        $(this).closest('tr').fadeOut();
+    });
+
+    $('.btn btn-success').bind('ajax:success', function(){
+        $(this).closest('tr').children('td').css('background-color','#A3A3A3')
+    });
+
+    $('.btn').bind('ajax:success', function(){
+         $(this).closest('tr').children('td').css('background-color','#000')
+    });

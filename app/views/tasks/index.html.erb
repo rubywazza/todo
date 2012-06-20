@@ -7,36 +7,15 @@
 <%= link_to "Export JSON", "tasks.json"  if current_user.account_type == "paid"  %>
 </div>
 <div class="row">
-<table class="table table-striped">
+<table class="table table-striped span12">
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Attachment</th>
-    <th>Deadline</th>
-    <th>Actions</th>
+    <th style="width: 15%">Title</th>
+    <th style="width: 20%">Description</th>
+    <th style="width: 20%">Attachment</th>
+    <th style="width: 15%">Deadline</th>
+    <th style="width: 30%">Actions</th>
   </tr>
-
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= link_to task.title, task_path(task) %></td>
-    <td><%= task.description %></td>
-    <td>
-      <% unless task.attachment_url.nil? %>
-          <%= link_to File.basename(task.attachment_url), task.attachment_url %>
-      <% end %>
-    </td>
-    <td><%= task.deadline %> </td>
-    <td>
-      <%= if task.is_finished
-                link_to 'Not done yet', notdone_task_path(task), :class => 'btn btn-warning'
-              else
-                link_to 'Done', done_task_path(task), :class => 'btn btn-success'
-              end
-      %>
-      <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-inverse' %>
-      <%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete , :class => 'btn btn-danger' %>
-    </td>
-  </tr>
-<% end %>
+   <%= render :partial => @tasks %>
 </table>
 </div>
+

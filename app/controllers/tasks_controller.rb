@@ -73,6 +73,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url}
       format.json { render json: @tasks} if current_user.account_type == "paid"
+      format.js
     end
   end
 
@@ -82,6 +83,7 @@ class TasksController < ApplicationController
      respond_to do |format|
        format.html { redirect_to tasks_url}
        format.json { render json: @tasks} if current_user.account_type == "paid"
+       format.js
      end
    end
   # PUT /tasks/1
@@ -108,7 +110,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_url }
-      format.json { head :no_content }
+      format.js { render :nothing => true }
     end
   end
 end

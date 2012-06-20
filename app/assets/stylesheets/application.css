@@ -12,3 +12,7 @@
  *= require_tree .
  *= require jquery.ui.all
 */
+<style>
+ table { table-layout: fixed; }
+table td { overflow: hidden; }
+ </style>

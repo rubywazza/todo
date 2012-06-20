@@ -1,36 +1,21 @@
-<h1>Stuff to do</h1>
-<%=	 link_to "New task", new_task_path %>  <%=	 link_to "Show all tasks", tasks_path %>
-<br/>
-<br/>
-<table>
+<div class="row">
+<div class="span4 offset4"><h2>Stuff to do for today</h2></div>
+</div>
+<div class="row" style="padding-bottom: 10px;">
+<%=	link_to "New task", new_task_path, :class => 'btn' %>
+<%= link_to "Show all tasks", tasks_path %>
+<%= link_to "Export JSON", "tasks.json"  if current_user.account_type == "paid"  %>
+</div>
+<div class="row">
+<table class="table table-striped span12">
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Attachment</th>
-    <th>Deadline</th>
-    <th>Actions</th>
-
+    <th style="width: 15%">Title</th>
+    <th style="width: 20%">Description</th>
+    <th style="width: 20%">Attachment</th>
+    <th style="width: 15%">Deadline</th>
+    <th style="width: 30%">Actions</th>
   </tr>
-
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= link_to task.title, task_path(task) %></td>
-    <td><%= task.description %></td>
-    <td>
-      <% unless task.attachment_url.nil? %>
-          <%= link_to File.basename(task.attachment_url), task.attachment_url %>
-      <% end %>
-    </td>
-    <td><%= task.deadline %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %>
-    <%= link_to 'Destroy', task_path(task), confirm: 'Are you sure?', method: :delete %>
-    <%= unless task.is_finished
-          link_to 'Done', done_task_path(task)
-        else
-          link_to 'Not done yet', notdone_task_path(task)
-        end
-    %>
-    </td>
-  </tr>
-<% end %>
+   <%= render :partial => @tasks %>
 </table>
+</div>
+

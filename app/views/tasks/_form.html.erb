@@ -18,7 +18,7 @@
     <%= f.text_area :description, :rows => 8, :cols =>105 %>
 
     <%= f.label :deadline %>
-    <%= f.datepicker 'deadline', :dateFormat => "yy-mm-dd" %>
+    <%= f.text_field 'deadline' %>
 
     <%= f.label :attachment %>
     <%= f.file_field :attachment %>
@@ -26,3 +26,9 @@
     <%= f.submit :class => 'btn' %>
   </div>
 <% end %>
+<script type="text/javascript">
+$(function(){
+  $("#task_deadline").datepicker();
+});
+</script>
+
