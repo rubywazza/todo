@@ -3,4 +3,7 @@ class Task < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   attr_accessible :title, :description, :deadline, :attachment, :is_finished
   mount_uploader :attachment, AttachmentUploader
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
 end

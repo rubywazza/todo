@@ -12,6 +12,10 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :production do
+  gem 'elasticsearch'
+end
+
 group :test do
   gem 'faker'
   gem 'capybara'
@@ -31,6 +35,7 @@ group :assets do
   gem 'jquery_datepicker'
   gem 'uglifier', '>= 1.0.3'
 end
+
 
 gem 'devise'
 gem 'carrierwave'

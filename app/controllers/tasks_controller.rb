@@ -4,7 +4,11 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @tasks = current_user.tasks
+    if params[:query].present?
+      @tasks = current_user.tasks.search("description:*" + params[:query] + "*", load: true)
+    else
+      @tasks = current_user.tasks
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +23,13 @@ class TasksController < ApplicationController
         format.html # index.html.erb
         format.json { render json: @tasks }  if current_user.account_type == "paid"
     end
+  end
+
+  def search
+
+    #respond_to do |format|
+     # format.html { render :action => "index" }
+    #end
   end
 
   # GET /tasks/1
